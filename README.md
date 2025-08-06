@@ -10,7 +10,7 @@ El análisis se basa en el archivo `Datos_TelecomX.csv`, que contiene informaci�
 
 ---
 
-## 1. Configuración y Carga Inicial de Datos
+## Configuración y Carga Inicial de Datos
 
 Este bloque de código configura el entorno de trabajo, carga el archivo CSV y muestra una visión general de los datos antes de la limpieza.
 
@@ -147,38 +147,12 @@ for i, var in enumerate(numerical_vars):
 plt.tight_layout()
 plt.show()
 
-# Definir las variables numéricas de interés
-numerical_vars = ['customer.tenure', 'account.Charges.Monthly', 'account.Charges.Total']
-
-# Crear subplots para visualizar la evasión por cada variable numérica
-fig, axes = plt.subplots(nrows=len(numerical_vars), ncols=2, figsize=(18, 15))
-fig.suptitle('Distribución de Evasión (Churn) por Variables Numéricas', fontsize=20, y=1.02)
-
-for i, var in enumerate(numerical_vars):
-    # Boxplot para ver la mediana y la dispersión
-    sns.boxplot(
-        data=df,
-        x='Churn',
-        y=var,
-        ax=axes[i, 0],
-        palette='magma'
-    )
-    axes[i, 0].set_title(f'Boxplot de {var} por Churn', fontsize=14)
-    axes[i, 0].set_xlabel('Evasión (Churn)')
-    axes[i, 0].set_ylabel(var)
-
-    # Histograma para ver la distribución de frecuencias
-    sns.histplot(
-        data=df,
-        x=var,
-        hue='Churn',
-        ax=axes[i, 1],
-        kde=True,
-        palette='magma'
-    )
-    axes[i, 1].set_title(f'Histograma de {var} por Churn', fontsize=14)
-    axes[i, 1].set_xlabel(var)
-    axes[i, 1].set_ylabel('Frecuencia')
-
-plt.tight_layout()
-plt.show()
+​Conclusiones:
+​La antigüedad del cliente es el predictor más fuerte de Churn, con la mayoría de las cancelaciones ocurriendo en los primeros 6 meses.
+​El servicio de Fibra óptica está asociado con una tasa de abandono significativamente mayor.
+​Los clientes con contratos "Month-to-month" son mucho más propensos a cancelar su servicio.
+​Recomendaciones Estratégicas:
+​Implementar un programa de retención enfocado en los clientes nuevos.
+​Investigar y mejorar la calidad del servicio de fibra óptica.
+​Ofrecer incentivos para motivar a los clientes a optar por contratos a largo plazo.
+​
